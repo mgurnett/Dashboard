@@ -34,12 +34,14 @@
 
     </style>
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'core/site/main.css' %}">
+    <!-- <link rel="shortcut icon" type="image/png" href="{% static 'core/site/favicon.png' %}" > -->
 </head>
 <body class="d-flex flex-column">
   <main class="flex-grow-1">
     <div class="container-fluid h-100">
       <div class="row no-gutters h-100">
-          <div class="col-auto boarder sidebar" style="width: 200px;">
+          <div class="col-auto boarder sidebar py-1" style="width: 200px;">
             {% include 'core/sidebar.html' %}
           </div>
           <div class="col boarder full-height">
