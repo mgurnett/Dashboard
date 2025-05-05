@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% include 'core/symbols.html' %}
@@ -34,8 +35,7 @@
 
     </style>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'core/site/main.css' %}">
-    <!-- <link rel="shortcut icon" type="image/png" href="{% static 'core/site/favicon.png' %}" > -->
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
 <body class="d-flex flex-column">
   <main class="flex-grow-1">
