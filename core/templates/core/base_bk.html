@@ -3,72 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Django App</title>
-    {% load bootstrap5 %}  {# Load Bootstrap's template tags #}
-    {% bootstrap_css %}    {# Include Bootstrap CSS #}
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% include 'core/symbols.html' %}
     <style>
-        .sidebar {
-            height: 100vh; /* Make sidebar full height */
-            position: fixed; /* Fix sidebar position */
-            top: 0;
-            left: 0;
-            width: 200px; /* Set the width of the sidebar */
-            padding-top: 60px; /* Add padding to the top, below the header */
-            display: flex;       /* Use flexbox for vertical alignment */
-            flex-direction: column;  /* Stack items vertically */
-        }
-        .sidebar ul {
-            flex-grow: 1;         /* Allow the ul to take up available space */
-        }
-        .content-area {
-            margin-left: 200px; /* Make space for the sidebar */
-            padding: 20px; /* Add padding to the content area */
-            height: calc(100vh - 80px); /* Adjust height for header and footer */
-            overflow-y: auto; /* Enable vertical scrolling if needed */
-        }
-        .header {
-            background-color: #e9ecef; /* Light background for header */
-            padding: 10px;
-            text-align: center;
-            position: fixed; /* Fix header to top */
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000; /* Ensure header is above other elements */
-        }
-        .footer {
-            background-color: #f8f9fa; /* Light background for footer */
-            padding: 10px;
-            text-align: center;
-            position: fixed; /* Fix footer to bottom */
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000; /* Ensure footer is above other elements */
-        }
+      html, body {
+        height: 100%;
+        overflow: hidden; /* Prevent scrollbars */
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto; /* Important:  Allow main to grow and shrink */
+        display: flex;
+        overflow: auto;  /* Enable scrollbars within main if needed */
+      }
+      
+      .full-height {
+        height: 100%;
+      }
+
+      .sidebar {
+        height: 100%;
+        overflow-y: auto; /* Scroll within the sidebar */
+      }
+
     </style>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
-<body>
-    <div class="header">
-        <h1>My Website Title</h1>
-    </div>
-    <div class="d-flex">
-        <nav class="sidebar bg-light">
-            <ul class="list-unstyled">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <main class="content-area">
+<body class="d-flex flex-column">
+  <main class="flex-grow-1">
+    <div class="container-fluid">
+      <div class="row no-gutters">
+          <div class="col-auto boarder py-1 bg-dark" style="width: 200px;">
+            {% include 'core/sidebar.html' %}
+          </div>
+          <div class="col bg-light">
             {% block content %}
             {% endblock %}
-        </main>
+          </div>
+      </div>
     </div>
-    <div class="footer">
-        <p>&copy; 2025 My Website</p>
-    </div>
-    {% bootstrap_javascript %}  {# Include Bootstrap JS #}
+  </main>
+  {% bootstrap_javascript %}
 </body>
 </html>

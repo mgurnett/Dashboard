@@ -39,12 +39,12 @@
 </head>
 <body class="d-flex flex-column">
   <main class="flex-grow-1">
-    <div class="container-fluid h-100">
-      <div class="row no-gutters h-100">
-          <div class="col-auto boarder sidebar py-1" style="width: 200px;">
+    <div class="container-fluid">
+      <div class="row no-gutters">
+          <div class="col-auto boarder py-1 bg-dark" style="width: 200px;">
             {% include 'core/sidebar.html' %}
           </div>
-          <div class="col boarder full-height">
+          <div class="col bg-light">
             {% block content %}
             {% endblock %}
           </div>
