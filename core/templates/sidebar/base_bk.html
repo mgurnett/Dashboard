@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% include 'core/symbols.html' %}
+    <style>
+      html, body {
+        height: 100%;
+        overflow: hidden; /* Prevent scrollbars */
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto; /* Important:  Allow main to grow and shrink */
+        display: flex;
+        overflow: auto;  /* Enable scrollbars within main if needed */
+      }
+      
+      .full-height {
+        height: 100%;
+      }
+
+      .sidebar {
+        height: 100%;
+        overflow-y: auto; /* Scroll within the sidebar */
+      }
+
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+</head>
+<body class="d-flex flex-column">
+  <main class="flex-grow-1">
+    <div class="container-fluid">
+      <div class="row no-gutters">
+          <div class="col-auto boarder py-1 bg-dark" style="width: 200px;">
+            {% include 'core/sidebar.html' %}
+          </div>
+          <div class="col bg-light">
+            {% block content %}
+            {% endblock %}
+          </div>
+      </div>
+    </div>
+  </main>
+  {% bootstrap_javascript %}
+</body>
+</html>

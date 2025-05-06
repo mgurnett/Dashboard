@@ -19,19 +19,10 @@ $danger:     #f44336;
 // see: https://youtu.be/akDIJa0AP5c?si=rYeEbnUMMNKxeo3m
 // https://youtu.be/Zz6eOVaaelI?si=8G-fXp2RJJzLp3MU
 
-// sidebarContainer {
-//     background: #6686b9;
-// }
-
-// nav {
-//     border-color: $info;
-// }
-
-// $body-bg:                   $secondary;
-
-$nav-link:                   $secondary;
-$nav-link-hover-color:       $primary;
-
+.navbar-brand {
+  color: $info !important;
+  // color: $secondary;
+}
 
   // If you are looking for the variables for the theme, 
   // https://getbootstrap.com/docs/5.0/customize/sass/

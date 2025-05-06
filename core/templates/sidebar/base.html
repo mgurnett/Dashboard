@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% include 'core/symbols.html' %}
+    <style>
+      html, body {
+        height: 100%;
+        overflow: hidden; /* Prevent scrollbars */
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1 0 auto; /* Important:  Allow main to grow and shrink */
+        display: flex;
+        overflow: auto;  /* Enable scrollbars within main if needed */
+      }
+      
+      .full-height {
+        height: 100%;
+      }
+
+      .sidebar {
+        height: 100%;
+        overflow-y: auto; /* Scroll within the sidebar */
+      }
+
+    </style>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <style>
+      html, body, .container-fluid, .row {
+        height: 100%;
+      }
+      .fixed-width-col {
+        width: 300px; /* Set your desired pixel width here */
+        border: 1px solid blue; /* For visualization */
+        height: 100%; /* Ensure full height */
+        display: flex;
+        flex-direction: column;
+      }
+      .flexible-col {
+        border: 1px solid green; /* For visualization */
+        height: 100%; /* Ensure full height */
+        display: flex;
+        flex-direction: column;
+      }
+      /* Targeting the main element specifically within .fixed-width-col */
+      .fixed-width-col > main {
+        flex-shrink: 1;   /* Allow this main section to shrink */
+        min-height: 0;    /* Crucial for enabling scroll on a flex item */
+        overflow-y: auto; /* Ensure vertical scrolling is enabled */
+        flex-direction: column; /* Since it has d-flex, its children should stack vertically to scroll */
+      }
+    </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row border">
+
+      <div class="col-auto border">
+        <div class="container-fluid h-100">
+          <div class="row h-100">
+            <div class="fixed-width-col">
+              <header class="border p-2">
+                header
+              </header>
+              <main class="border p-2 flex-grow-1 d-flex">
+                main
+              </main>
+              <footer class="border p-2">
+                footer
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col  flex-grow-1 border">
+        <div class="container-fluid h-100">
+          <div class="row h-100">
+            <div class="col-md-auto border h-100 d-flex flex-column">
+              <header class="border p-2">
+                header
+              </header>
+              <main class="border p-2 flex-grow-1 d-flex">
+                <div class="container h-100">
+                  {% block content %}
+                  {% endblock %}
+                </div>
+              </main>
+              <footer class="border p-2">
+                footer
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
