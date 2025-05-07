@@ -7,6 +7,25 @@
   border-color: #39c1f0;
 }
 
+.bi.icon-primary {
+  color: #6686b9;
+}
+.bi.icon-secondary {
+  color: #2b4881;
+}
+.bi.icon-danger {
+  color: #f44336;
+}
+.bi.icon-warning {
+  color: #c4a448;
+}
+.bi.icon-success {
+  color: #46b480;
+}
+.bi.icon-info {
+  color: #39c1f0;
+}
+
 /*!
  * Bootstrap  v5.3.5 (https://getbootstrap.com/)
  * Copyright 2011-2025 The Bootstrap Authors

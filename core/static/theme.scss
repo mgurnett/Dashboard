@@ -22,6 +22,7 @@ $danger:     #f44336;
 .navbar-brand {
   color: $info !important;
   // color: $secondary;
+  // color: $info
 }
 
   // If you are looking for the variables for the theme, 
@@ -32,3 +33,26 @@ $danger:     #f44336;
 }
 
 // see colors https://huemint.com/bootstrap-plus/
+
+// Target specific font icons by their class
+.bi {
+  // color: $info;  // Removed the direct color assignment
+  &.icon-primary {
+    color: $primary;
+  }
+  &.icon-secondary  {
+    color: $secondary;
+  }
+  &.icon-danger {
+    color: $danger;
+  }
+  &.icon-warning  {
+    color: $warning;
+  }
+  &.icon-success {
+    color: $success;
+  }
+  &.icon-info  {
+    color: $info;
+  }
+}
