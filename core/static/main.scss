@@ -1,6 +1,16 @@
 @import './theme.scss';
 
-
+.my-custom-link {
+    color: $warning; // Using another Bootstrap theme color variable (e.g., green)
+    text-decoration: none;
+  
+    &:hover {
+      // color: darken($warning, 30%); // Lighten the success color on hover
+      color: $secondary; // Lighten the success color on hover
+      font-weight: bold;
+    }
+  }
+  
 @import './scss/bootstrap.scss';
 
 
