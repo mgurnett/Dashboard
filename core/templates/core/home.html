@@ -5,42 +5,18 @@
 {% endblock %}
 
 {% block content %}  {#  Put content in the 'content' block #}
-    <h1>Welcome to Django</h1>
-    <p>This page is using Bootstrap 5!</p>
-    <button class="btn btn-primary">Click Me</button>
-    <button class="btn btn-secondary">Click Me</button>
-    <button class="btn btn-danger">Click Me</button>
-    <button class="btn btn-warning">Click Me</button>
-    <button class="btn btn-success">Click Me again</button>
-
-    <a href="#" class="my-custom-link">Purple to Magenta</a>
-    <a href="#" class="my-custom-link">Orange to Dark Orange</a>
-
-    <p class="text-primary">.text-primary</p>
-    <p class="text-primary-emphasis">.text-primary-emphasis</p>
-    <p class="text-secondary">.text-secondary</p>
-    <p class="text-secondary-emphasis">.text-secondary-emphasis</p>
-    <p class="text-success">.text-success</p>
-    <p class="text-success-emphasis">.text-success-emphasis</p>
-    <p class="text-success-emphasis bg-dark">.text-success-emphasis</p>
-    <p class="text-danger">.text-danger</p>
-    <p class="text-danger-emphasis">.text-danger-emphasis</p>
-    <p class="text-warning bg-dark">.text-warning</p>
-    <p class="text-warning-emphasis">.text-warning-emphasis</p>
-    <p class="text-info bg-dark">.text-info</p>
-    <p class="text-info-emphasis">.text-info-emphasis</p>
-    <p class="text-light bg-dark">.text-light</p>
-    <p class="text-light-emphasis">.text-light-emphasis</p>
-    <p class="text-dark bg-white">.text-dark</p>
-    <p class="text-dark-emphasis">.text-dark-emphasis</p>
-
-    <p class="text-body">.text-body</p>
-    <p class="text-body-emphasis">.text-body-emphasis</p>
-    <p class="text-body-secondary">.text-body-secondary</p>
-    <p class="text-body-tertiary">.text-body-tertiary</p>
-
-    <p class="text-black bg-white">.text-black</p>
-    <p class="text-white bg-dark">.text-white</p>
-    <p class="text-black-50 bg-white">.text-black-50</p>
-    <p class="text-white-50 bg-dark">.text-white-50</p>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link my-custom-link active" aria-current="page" href="#">Farm</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link my-custom-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link my-custom-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link my-custom-link" aria-disabled="true">Disabled</a>
+    </li>
+  </ul>
 {% endblock %}

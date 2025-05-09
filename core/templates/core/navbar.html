@@ -22,14 +22,6 @@
         </li>
         <li class="nav-item dropdown my-custom-link">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-alarm icon-info" style="font-size: 2rem;"></i>
-            <i class="bi bi-alarm-fill icon-danger" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-primary" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-secondary" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-success" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-warning" style="font-size: 2rem;"></i>
-            <i class="bi bi-alarm-fill icon-info" style="font-size: 2rem;"></i>
-            <i class="bi bi-alarm-fill icon-info-dark" style="font-size: 2rem;"></i>
             Dropdown
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -41,19 +33,22 @@
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-            <i class="bi bi-alarm icon-info" style="font-size: 2rem;"></i>
-            <i class="bi bi-alarm-fill icon-danger" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-primary" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-secondary" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-success" style="font-size: 2rem;"></i>
-            <i class="bi bi-arrow-through-heart icon-warning" style="font-size: 2rem;"></i>
-            <i class="bi bi-alarm-fill icon-info" style="font-size: 2rem;"></i>
-            <i class="bi bi-alarm-fill icon-info-dark" style="font-size: 2rem;"></i>
             Disabled
           </a>
         </li>
       </ul>
 
-      <a href="{% url 'login' %}">Login</a>
+      Hello, {{ user.username|default:"Guest" }}!
+      {% if user.is_authenticated %} 
+        <a class="btn btn-outline-primary" href="{% url 'admin:index' %}" >
+          ADMIN
+        </a>
+        {% include "registration/_logout.html" %}
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'sign_up' %}">Sign up</a>
+      {% endif %}
+      
     </div>
+
 </div>
