@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 # from core.helpers.graph_functions import *
 # from core.helpers.archive import *
 
@@ -15,8 +16,44 @@ class Home(TemplateView):
     def get_context_data(self, **kwargs):
  
         context = super(Home, self).get_context_data(**kwargs)
-        context['farm'] = Farm.objects.all()
         # context['sensors'] = Sensor.objects.all()
+        return context
+
+
+class Main(LoginRequiredMixin, TemplateView):
+    template_name = "core/main.html"
+    model = Farm
+
+    def get_context_data(self, **kwargs):
+        logged_in_user = self.request.user
+        # farm = Farm.objects.get(id=1)  # Replace with the ID of the farm you want to add the user to
+        # farm.farmers.add(logged_in_user)
+        context = super().get_context_data(**kwargs)
+        try:
+            # users_farms = Farm.objects.filter(farmers.user_id==logged_in_user.id)
+            users_farms = logged_in_user.farms.all()
+            # print(logged_in_user)  # print the logged-in user instance
+            # print(logged_in_user.id)  # print the logged-in user instance
+            # print(Farm.objects.filter(farmers=logged_in_user).query)  # print the generated SQL query
+            # users_farms = Farm.objects.filter(farmers__in=[logged_in_user])
+            # ic (len(users_farms))
+            context['farms'] = users_farms
+        except Farm.DoesNotExist:
+            # Handle the case where the user doesn't have an associated farm
+            context['farm'] = None  # Or some other appropriate value
+            ic("No farm found for this user.")
+            ic(logged_in_user)
+        # else:
+            # ic ("Trying to print the farm list")
+            # ic (len(users_farms))
+            # ic (logged_in_user)
+            # for farm in users_farms:
+            #     ic(farm.name)
+            # farm = Farm.objects.get(id=1)  # Replace with the ID of the farm you want to check
+            # if logged_in_user in farm.farmers.all():
+            #     print("User is in the farmers field")
+            # else:
+            #     print("User is not in the farmers field")
         return context
 
 

@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}  {# Extend your base.html #}
+
+{% block title %}
+    DASHBOARD
+{% endblock %}
+
+{% block content %}  {#  Put content in the 'content' block #}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link my-custom-link active" aria-current="page" href="#">Summery</a>
+    </li>
+    {% for farm in farms %}
+      <li class="nav-item">
+        <a class="nav-link my-custom-link" href="#">{{ farm.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

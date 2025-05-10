@@ -18,11 +18,13 @@ class Farm(models.Model):
     pw = models.CharField(max_length=100, blank = True)
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100, blank = True)
-    farmers = models.ManyToManyField(User, blank=True)
+    farmers = models.ManyToManyField(User, blank=True, related_name='farms')
 
     class Meta:
         ordering = ["name"]
 
+    def __str__(self):
+        return f"{self.name} at {self.location}"
 
 
 class Chain(models.Model):

@@ -16,7 +16,7 @@
                         {% csrf_token %}
                         {{ form|crispy  }}
                         <input type="submit" value="Login" />
-                        <input type="hidden" name="next" value="{% url 'home' %}" />
+                        <input type="hidden" name="next" value="{% url 'main' %}" />
                     </form>
                 </div>
             </div>
