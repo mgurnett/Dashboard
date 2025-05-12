@@ -40,6 +40,23 @@ class Chain(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+        
+    @property
+    def battery_voltage(self):
+        battery = Status.objects.filter(chain=self).order_by('-recorded').first()
+        return battery.battery
+    
+    @property
+    def highest_current_temp(self):
+        try:
+            sensors = Sensor.objects.filter(chain=self)
+            higest_readings = Reading.objects.filter(sensor__chain=self).order_by('-recorded').first()
+        except:
+            print("no sensors")
+            return None
+        else:
+            # ic(higest_readings)
+            return higest_readings
     
    
 class Sensor(models.Model):

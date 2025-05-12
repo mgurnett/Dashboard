@@ -7,7 +7,7 @@ class FarmAdmin (admin.ModelAdmin):
 
 @admin.register (Chain)
 class ChainAdmin (admin.ModelAdmin):
-    list_display = ["serial_number", "name", "description", "ip", "latest_update"]
+    list_display = ["serial_number", "name", "description", "ip", "latest_update", "farm"]
 
 @admin.register (Sensor)
 class SensorAdmin (admin.ModelAdmin):

@@ -85,15 +85,22 @@ WSGI_APPLICATION = 'Dashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'django.db.backends.mysql',
+#     # 'NAME': 'GranaryWatch',
+#     'NAME': 'GW_F',
+#     'USER':'nginx',
+#     'PASSWORD':'Sam5000',
+#     'HOST':'edmontonflyfishing.com',
+#     'PORT':'37711',
+#     }
+# }
+
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    # 'NAME': 'GranaryWatch',
-    'NAME': 'GW_F',
-    'USER':'nginx',
-    'PASSWORD':'Sam5000',
-    'HOST':'edmontonflyfishing.com',
-    'PORT':'37711',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

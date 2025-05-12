@@ -1,18 +1,37 @@
 {% extends 'core/base.html' %}  {# Extend your base.html #}
 
 {% block title %}
-    DASHBOARD
+    Summery
 {% endblock %}
 
 {% block content %}  {#  Put content in the 'content' block #}
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link my-custom-link active" aria-current="page" href="#">Summery</a>
-    </li>
-    {% for farm in farms %}
-      <li class="nav-item">
-        <a class="nav-link my-custom-link" href="#">{{ farm.name }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="row"> <!-- tabs -->
+    <h5 class="col-12"><!-- Nav tabs -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link my-custom-link active" data-bs-toggle="tab" role="tab" href="#SUMMERY">Summery</a>
+        </li>
+        {% for farm in farms %}
+          <li class="nav-item">
+            <a class="nav-link my-custom-link" data-bs-toggle="tab" href="#FARM{{ farm.name }}">{{ farm.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="row"> <!-- slides -->
+    <div class="col-md-12  ">               <!-- Tab panes -->
+      <div class="tab-content ">
+        <div class="tab-pane container active" role="tabpanel" id="SUMMERY">
+          {% include 'snippets/summery.html' %}
+        </div>  
+        {% for farm in farms %}
+          <div class="tab-pane container fade" id="FARM{{ farm.name }}">
+          {% include 'snippets/specific.html' %}
+          </div>   
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
