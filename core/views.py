@@ -36,7 +36,7 @@ class Main(LoginRequiredMixin, TemplateView):
             # print(logged_in_user.id)  # print the logged-in user instance
             # print(Farm.objects.filter(farmers=logged_in_user).query)  # print the generated SQL query
             # users_farms = Farm.objects.filter(farmers__in=[logged_in_user])
-            ic (len(users_farms))
+            # ic (len(users_farms))
             context['farms'] = users_farms
             context['chains'] = Chain.objects.all()
         except Farm.DoesNotExist:

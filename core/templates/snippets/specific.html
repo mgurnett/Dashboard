@@ -1,5 +1,5 @@
+{% load tz %}
 {% load displays %}  <!-- load the templatetags-->
-<h3>This is data for {{farm.name}} at {{farm.location}}</h3>
 
 <table class="table table-secondary table-hover">
   <thead>
@@ -18,9 +18,10 @@
                 <td class = "text-center fw-bolder">
                     {% temp_text_colour__html chain.highest_current_temp.value chain.highest_current_temp.sensor.alarm chain.highest_current_temp.alarm_state %}
                 </td>
-                <td>
-                    {{ chain.latest_update }}
-                    {% comment %} {% date_format chain.latest_update %} {% endcomment %}
+                <td class = "text-center fw-bolder">
+                    {% localtime on %}
+                        {% date_format chain.latest_update %}
+                    {% endlocaltime %}
                 </td>
                 <td class = "text-center fw-bolder">{% battery_voltage__html chain.battery_voltage %}</td>
             </tr>
@@ -28,3 +29,5 @@
     {% endfor %}
   </tbody>
 </table>
+
+

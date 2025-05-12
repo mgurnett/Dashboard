@@ -1,14 +1,18 @@
-<h1>This is the summery</h1>
 <div class="album py-1 ">
     <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header boarder">header</div>
-                <div class="card-body boarder">
-                    <h5 class="card-title">Card title</h5>
+        {% for farm in farms %}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header boarder">
+                        {{ farm.name}} at {{ farm.location }}
+                    </div>
+                    <div class="card-body boarder">
+                        {% include "snippets/specific.html" %}
+                    </div>
+                    <div class="card-footer boarder">footer</div>
                 </div>
-                <div class="card-footer boarder">footer</div>
             </div>
-        </div>
+        {% endfor %}
+    </div>
     </div>
 </div>

@@ -70,6 +70,14 @@ class Sensor(models.Model):
 
     def __str__(self):
         return f"{self.chain.name} at {self.depth}ft"
+    
+    @property
+    def latest_reading(self):  
+        try:
+            reading = Reading.objects.filter(sensor=self).order_by('-recorded').first()
+            return reading
+        except:
+            return None
 
 
 class Reading(models.Model):

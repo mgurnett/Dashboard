@@ -2,6 +2,7 @@ from django import template
 from django.utils.safestring import mark_safe
 from django.db import models
 from datetime import datetime, date, timedelta
+from django.utils import timezone
 from icecream import ic
 
 register = template.Library()
@@ -12,7 +13,7 @@ def date_format(latest_update):
     if latest_update == datetime(2000, 1, 1, 0, 0):
         return ""   
     else:
-        now = datetime.now()  # Use timezone.now()
+        now = timezone.now()
         time_difference = now - latest_update
         if time_difference > timedelta(hours=1):
             return mark_safe(f'<div class="text-danger">{latest_update.strftime("%a, %b %d @ %-I:%M:%S %p")}</div>')
