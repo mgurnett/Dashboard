@@ -1,0 +1,57 @@
+{% load tz %}
+{% load displays %}  <!-- load the templatetags-->
+
+<table class="table table-secondary table-hover">
+  <thead>
+    <tr>
+      <th scope="col" class = "text-center">Granary</th>
+      <th scope="col" class = "text-center">Highest current temp</th>
+      <th scope="col" class = "text-center">Latest update</th>
+      <th scope="col" class = "text-center">Battery Voltage</th>
+      <th scope="col" class = "text-center"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for chain in chains %}
+        {% if chain.farm == farm %}
+            <tr>
+                <th scope="row">{{ chain.serial_number }}-{{ chain.name }}</th>
+                <td class = "text-center fw-bolder">
+                    {% temp_text_colour__html chain.highest_current_temp.value chain.highest_current_temp.sensor.alarm chain.highest_current_temp.alarm_state %}
+                </td>
+                <td class = "text-center fw-bolder">
+                    {% localtime on %}
+                        {% date_format chain.latest_update %}
+                    {% endlocaltime %}
+                </td>
+                <td class = "text-center fw-bolder">{% battery_voltage__html chain.battery_voltage %}</td>
+                <td class = "text-center fw-bolder">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#GRAPH{{ chain.id}}">
+                    Graph
+                  </button>
+                </td>
+
+                <!-- Modal for this specific chain -->
+                <div class="modal fade" id="GRAPH{{ chain.id}}" tabindex="-1" aria-labelledby="graphModalLabel{{ chain.id }}" aria-hidden="true">
+                  <div class="modal-dialog modal-lg"> {# Optional: modal-lg for a wider graph modal #}
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="graphModalLabel{{ chain.id }}">Graph for {{ chain.serial_number }} - {{ chain.name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Graph content for chain ID {{ chain.id }} will go here!</p>
+                        {# You would typically include another template here or use JavaScript to load graph data #}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        {# <button type="button" class="btn btn-primary">Save changes</button> #}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </tr>
+        {% endif %}
+    {% endfor %}
+  </tbody>
+</table>

@@ -20,6 +20,17 @@ class Home(TemplateView):
         return context
 
 
+class Test(TemplateView):
+    template_name = "core/test_page.html"
+    model = Farm
+
+    def get_context_data(self, **kwargs):
+ 
+        context = super(Test, self).get_context_data(**kwargs)
+        # context['sensors'] = Sensor.objects.all()
+        return context
+
+
 class Main(LoginRequiredMixin, TemplateView):
     template_name = "core/main.html"
     model = Farm
@@ -70,16 +81,17 @@ class Utilities(TemplateView):
         return context
  
 
-class GranaryDetail(TemplateView):
-    template_name = "core/granary_detail.html"
-    model = Chain
+class ChainList(TemplateView):
+    template_name = "core/chain_list.html"
+    model = Farm
 
     def get_context_data(self, **kwargs):
-        granary = Chain.objects.get(pk=self.kwargs["pk"])
-        context = super(GranaryDetail, self).get_context_data(**kwargs)
-        context['granary'] = granary
-        context['sensors'] = Sensor.objects.filter(chain=granary).order_by('depth')
-        context['num_of_readings'] = History.objects.filter(sensor__chain=granary).count()
+        farm = Farm.objects.get(pk=self.kwargs["pk"])
+        chains = Chain.objects.filter(farm=farm)
+        context = super(ChainList, self).get_context_data(**kwargs)
+        context['chains'] = chains
+        # context['sensors'] = Sensor.objects.filter(chain=chains).order_by('depth')
+        # context['num_of_readings'] = History.objects.filter(sensor__chain=granary).count()
         return context
  
 

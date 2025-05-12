@@ -8,11 +8,13 @@
       <th scope="col" class = "text-center">Highest current temp</th>
       <th scope="col" class = "text-center">Latest update</th>
       <th scope="col" class = "text-center">Battery Voltage</th>
+      <th scope="col" class = "text-center"></th>
     </tr>
   </thead>
   <tbody>
     {% for chain in chains %}
         {% if chain.farm == farm %}
+          <a href="{{ item.get_absolute_url }}" class="row-link">
             <tr>
                 <th scope="row">{{ chain.serial_number }}-{{ chain.name }}</th>
                 <td class = "text-center fw-bolder">
@@ -24,10 +26,10 @@
                     {% endlocaltime %}
                 </td>
                 <td class = "text-center fw-bolder">{% battery_voltage__html chain.battery_voltage %}</td>
+                <td class = "text-center fw-bolder"></td>
             </tr>
+          </a>
         {% endif %}
     {% endfor %}
   </tbody>
 </table>
-
-

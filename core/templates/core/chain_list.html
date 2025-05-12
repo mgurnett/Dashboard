@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}  {# Extend your base.html #}
+{% load displays %}  <!-- load the templatetags-->
+
+{% block title %}
+    Summery
+{% endblock %}
+
+{% block content %}  {#  Put content in the 'content' block #}
+<h3>Chains</h3>
+<div class="album py-1 ">
+    <div class="row">
+        {% for chain in chains %}
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header border">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-start">
+                                    <b>{{ chain.serial_number }}</b>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-end">
+                                    <b>{{ chain.name}}</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body border">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Description: {{ chain.description }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer border text-end">
+                        <div class="row">
+                            <div class="col-md-4 text-start">
+                                IP: <b>{{ chain.ip }}</b>
+                            </div>
+                            <div class="col-md-3 text-end">
+                                Last updated:
+                            </div>
+                            <div class="col-auto">
+                                {% date_format chain.latest_update %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
