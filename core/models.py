@@ -44,6 +44,8 @@ class Chain(models.Model):
     @property
     def battery_voltage(self):
         battery = Status.objects.filter(chain=self).order_by('-recorded').first()
+        if battery is None:
+            return None
         return battery.battery
     
     @property
