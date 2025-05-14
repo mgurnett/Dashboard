@@ -21,7 +21,7 @@
                     {% temp_text_colour__html chain.highest_current_temp.value chain.highest_current_temp.sensor.alarm chain.highest_current_temp.alarm_state %}
                 </td>
                 <td class = "text-center fw-bolder">
-                  {% date_format chain.latest_update %}
+                  {% date_format chain.latest_update_tz %}
                 </td>
                 <td class = "text-center fw-bolder">{% battery_voltage__html chain.battery_voltage %}</td>
                 <td class = "text-center fw-bolder"></td>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from datetime import datetime, date, timedelta
+import pytz
+from django.utils import timezone 
 from icecream import ic
 from django.db.models import F
 from django.contrib.auth.models import User
@@ -59,6 +61,26 @@ class Chain(models.Model):
         else:
             # ic(higest_readings)
             return higest_readings
+    
+    @property
+    def latest_update_tz(self):
+        if self.latest_update is None:
+            return None
+        """
+        Takes a timezone-aware datetime object incorrectly marked as UTC
+        and returns a timezone-aware datetime object with the Edmonton timezone,
+        representing the same clock time.
+        """
+        edmonton_tz = pytz.timezone('America/Edmonton')
+
+        # Remove the incorrect UTC timezone
+        datetime_naive_edmonton = self.latest_update.replace(tzinfo=None)
+
+        # Now, localize this naive datetime as Edmonton time
+        datetime_edmonton_correct = edmonton_tz.localize(datetime_naive_edmonton)
+
+        return datetime_edmonton_correct
+
     
    
 class Sensor(models.Model):
