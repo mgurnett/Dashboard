@@ -23,12 +23,12 @@ def date_format(latest_update_tz):
     # Get the current time in Edmonton
     now_edmonton = timezone.localtime(timezone.now(), timezone=edmonton_tz)
 
-    # time_difference = now_edmonton - latest_update_edmonton
-    print (f"local time (Edmonton): {now_edmonton} and latest update (Edmonton): {latest_update_edmonton} and time difference: {time_difference}")
+    time_difference = now_edmonton - latest_update_tz
+    print (f"local time (Edmonton): {now_edmonton} and latest update (Edmonton): {latest_update_tz} and time difference: {time_difference}")
     if time_difference > timedelta(hours=1):
-        return mark_safe(f'<div class="text-danger">{latest_update_edmonton.strftime("%a, %b %d @ %-I:%M:%S %p")}</div>')
+        return mark_safe(f'<div class="text-danger">{latest_update_tz.strftime("%a, %b %d @ %-I:%M:%S %p")}</div>')
     else:
-        return mark_safe(f'<div class="text-success">{latest_update_edmonton.strftime("%a, %b %d @ %-I:%M:%S %p")}</div>')
+        return mark_safe(f'<div class="text-success">{latest_update_tz.strftime("%a, %b %d @ %-I:%M:%S %p")}</div>')
     
 @register.simple_tag
 def battery_voltage__html(voltage):
